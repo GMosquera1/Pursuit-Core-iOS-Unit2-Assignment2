@@ -26,14 +26,12 @@ class GOTDetailedController: UIViewController {
         updateGotUI()
     }
     private func updateGotUI() {
-        episodeImage.image = UIImage.init(named: (episodes?.originalImageID)!)
+        episodeImage.image = UIImage(named: (episodes?.originalImageID)!)
+            //UIImage.init(named: (episodes?.originalImageID)!)
         episodeTitle.text = episodes?.name
         episodeSeason.tag = (episodes?.season)!
         episodeRuntime.tag = (episodes?.runtime)!
         episodeAirDate.text = episodes?.airdate
         episodeDescription.text = episodes?.summary
-        
     }
-
-
 }

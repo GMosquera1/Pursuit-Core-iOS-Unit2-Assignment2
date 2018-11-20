@@ -10,7 +10,8 @@ import UIKit
 
 class TrailingCell: UITableViewCell {
     
-    @IBOutlet weak var gotImage: UIImage!
+
+    @IBOutlet weak var gotImage: UIImageView!
     @IBOutlet weak var gotEpisode: UILabel!
     @IBOutlet weak var gotSeason: UILabel!
     

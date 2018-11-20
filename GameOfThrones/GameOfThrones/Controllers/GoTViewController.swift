@@ -33,7 +33,7 @@ class GoTViewController: UIViewController {
         tableView.delegate = self
         episodes = GOTEpisode.allEpisodes //questionable
             setUpRefreshControl()
-        //        setUpProtocols()
+               setUpProtocols()
         
     } // this line of code scares me
 //    static func getEpisodes() -> [GOTEpisode] {
@@ -71,7 +71,7 @@ extension GoTViewController: UITableViewDataSource {
         
         
         let episode = episodes[indexPath.row]
-        // leadingCell.gotImage.image = UIImage.init(named: (episodes?.originalImageID)!)
+        //leadingCell.gotImage.image = UIImage(named: episodes.originalImageID)
         leadingCell.gotEpisode.text = episode.name
         leadingCell.gotSeason.tag = episode.season
         
@@ -81,7 +81,7 @@ extension GoTViewController: UITableViewDataSource {
 }
 extension GoTViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat{
-        return 400
+        return 100
     }
 }
 
