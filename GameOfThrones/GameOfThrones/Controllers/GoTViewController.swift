@@ -65,13 +65,13 @@ extension GoTViewController: UITableViewDataSource {
         let episode = episodes[indexPath.row]
         if episode.season % 2 == 0 {
             guard let trailingCell = tableView.dequeueReusableCell(withIdentifier: "TrailingCell", for: indexPath) as? TrailingCell else { return UITableViewCell() }
-            trailingCell.gotImage.image = UIImage(named: episode.originalImageID)
+            trailingCell.gotImage.image = UIImage(named: episode.mediumImageID)
             trailingCell.gotSeason.text = episode.name
             trailingCell.gotEpisode.text = "S:\(episode.season) E:\(episode.number)"
             return trailingCell
         } else {
             guard let leadingCell =  tableView.dequeueReusableCell(withIdentifier: "LeadingCell", for: indexPath) as? LeadingCell else { return UITableViewCell() }
-            leadingCell.gotImage.image = UIImage(named: episode.originalImageID)
+            leadingCell.gotImage.image = UIImage(named: episode.mediumImageID)
             leadingCell.gotSeason.text = episode.name
                 leadingCell.gotEpisode.text = "S:\(episode.season) E:\(episode.number)"
             return leadingCell
