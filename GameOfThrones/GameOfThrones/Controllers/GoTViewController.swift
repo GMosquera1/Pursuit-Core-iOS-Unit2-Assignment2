@@ -31,19 +31,15 @@ class GoTViewController: UIViewController {
         super.viewDidLoad()
         tableView.dataSource = self
         tableView.delegate = self
-        episodes = GOTEpisode.allEpisodes //questionable
-            setUpRefreshControl()
+        episodes = GOTEpisode.allEpisodes
                setUpProtocols()
         
-    } // this line of code scares me
-//    static func getEpisodes() -> [GOTEpisode] {
-//        return GOTEpisode.allEpisodes
-//    }
+    }
     
     private func setUpRefreshControl() {
         refreshControl = UIRefreshControl()
         tableView.refreshControl = refreshControl
-       refreshControl.addTarget(self, action: #selector(fetchEpisodes), for: .valueChanged)
+        refreshControl.addTarget(self, action: #selector(fetchEpisodes), for: .valueChanged)
     }
     @objc private func
         fetchEpisodes() {
@@ -52,11 +48,11 @@ class GoTViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let indexPath = tableView.indexPathForSelectedRow,
-            let gotDetailedController = segue.destination as? GOTDetailedController else { return }
-     let episode = episodes[indexPath.row]
+        guard let gotDetailedController = segue.destination as? GOTDetailedController,
+            let indexPath = tableView.indexPathForSelectedRow else { return }
+        let episode = episodes[indexPath.row]
         gotDetailedController.episodes = episode
-}
+    }
 
 }
 
@@ -66,24 +62,29 @@ extension GoTViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-       // sets which custom cell to use, ie leading or trailing cell. if/ else statement
-        guard let leadingCell =  tableView.dequeueReusableCell(withIdentifier: "LeadingCell", for: indexPath) as? LeadingCell else { return UITableViewCell() }
-        
-        
         let episode = episodes[indexPath.row]
-        //leadingCell.gotImage.image = UIImage(named: episodes.originalImageID)
-        leadingCell.gotEpisode.text = episode.name
-        leadingCell.gotSeason.tag = episode.season
-        
-        return leadingCell
+        if episode.season % 2 == 0 {
+            guard let trailingCell = tableView.dequeueReusableCell(withIdentifier: "TrailingCell", for: indexPath) as? TrailingCell else { return UITableViewCell() }
+            trailingCell.gotImage.image = UIImage(named: episode.originalImageID)
+            trailingCell.gotSeason.text = episode.name
+            trailingCell.gotEpisode.text = "S:\(episode.season) E:\(episode.number)"
+            return trailingCell
+        } else {
+            guard let leadingCell = tableView.dequeueReusableCell(withIdentifier: "LeadingCell", for: indexPath) as? LeadingCell else { return UITableViewCell() }
+            leadingCell.gotImage.image = UIImage(named: episode.originalImageID)
+            leadingCell.gotSeason.text = episode.name
+            leadingCell.gotEpisode.text = "S:\(episode.season) E:\(episode.number)"
+            return leadingCell
+        }
     }
-    
 }
+
 extension GoTViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat{
         return 100
     }
 }
+
 
 //extension GoTViewController: UISearchBarDelegate {
 //    // step 2: implements menthods as needed or required if available

@@ -19,19 +19,19 @@ class GOTDetailedController: UIViewController {
     @IBOutlet weak var episodeAirDate: UILabel!
     @IBOutlet weak var episodeDescription: UITextView!
     
-    var episodes: GOTEpisode?
+    var episodes: GOTEpisode!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         updateGotUI()
     }
     private func updateGotUI() {
-        episodeImage.image = UIImage(named: (episodes?.originalImageID)!)
-            //UIImage.init(named: (episodes?.originalImageID)!)
-        episodeTitle.text = episodes?.name
-        episodeSeason.tag = (episodes?.season)!
-        episodeRuntime.tag = (episodes?.runtime)!
-        episodeAirDate.text = episodes?.airdate
+        episodeImage.image = UIImage(named:episodes.originalImageID)
+        episodeTitle.text = episodes.name
+        episodeSeason.text = "Season: \(episodes.season)"
+        episodeEpisode.text = "Episode: \(episodes.number)"
+        episodeRuntime.text = "RunTime: \(episodes.runtime)"
+        episodeAirDate.text = episodes.airdate
         episodeDescription.text = episodes?.summary
     }
 }
