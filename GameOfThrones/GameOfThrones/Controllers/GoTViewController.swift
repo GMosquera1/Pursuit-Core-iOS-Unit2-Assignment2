@@ -70,10 +70,10 @@ extension GoTViewController: UITableViewDataSource {
             trailingCell.gotEpisode.text = "S:\(episode.season) E:\(episode.number)"
             return trailingCell
         } else {
-            guard let leadingCell = tableView.dequeueReusableCell(withIdentifier: "LeadingCell", for: indexPath) as? LeadingCell else { return UITableViewCell() }
+            guard let leadingCell =  tableView.dequeueReusableCell(withIdentifier: "LeadingCell", for: indexPath) as? LeadingCell else { return UITableViewCell() }
             leadingCell.gotImage.image = UIImage(named: episode.originalImageID)
             leadingCell.gotSeason.text = episode.name
-            leadingCell.gotEpisode.text = "S:\(episode.season) E:\(episode.number)"
+                leadingCell.gotEpisode.text = "S:\(episode.season) E:\(episode.number)"
             return leadingCell
         }
     }

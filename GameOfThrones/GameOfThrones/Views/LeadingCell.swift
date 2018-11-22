@@ -9,9 +9,12 @@
 import UIKit
 
 class LeadingCell: UITableViewCell {
-
+    
     @IBOutlet weak var gotImage: UIImageView!
+    
     @IBOutlet weak var gotEpisode: UILabel!
-    @IBOutlet weak var gotSeason: UILabel! 
+    
+    
+    @IBOutlet weak var gotSeason: UILabel!
 
 }
